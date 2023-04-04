@@ -9,25 +9,26 @@ const Contact = () => {
      backgroundRepeat: "no-repeat",
      backgroundPosition: "center",
    }}>
-      <div className="max-w-[1400px] m-auto text-white">
+      <div className="max-w-[1400px] m-auto">
         <div className="text-center mb-5">
           <h3 className="font-bold text-cyan-500">CONTACT US</h3>
-          <h2 className="text-4xl">Stay connected whith us!</h2>
+          <h2 className="text-4xl text-white">Stay connected whith us!</h2>
         </div>
         <form className="lg:w-1/3 m-auto">
           <input
-            type="text"
-            placeholder="Type here"
+            type="email"
+            placeholder="Enter your email Address"
             className="input input-bordered mb-5 w-full"
           />
           <input
             type="text"
-            placeholder="Type here"
+            placeholder="Subject"
             className="input input-bordered mb-5 w-full"
           />
+          
           <textarea
             className="textarea textarea-bordered w-full mb-4"
-            placeholder="Bio"
+            placeholder="Your Message"
           ></textarea>
           <button className="btn border-0 bg-gradient-to-r from-cyan-500 to-blue-500">Submit Now</button>
         </form>
