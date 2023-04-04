@@ -1,5 +1,5 @@
 import React from 'react';
-import footerBg from '../../../assets/images/bg.png'
+import footerBg from '../../../assets/images/footer.png'
 
 const Footer = () => {
      return (
@@ -7,7 +7,6 @@ const Footer = () => {
       style={{
         background: `url(${footerBg})`,
         backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
         
       }}

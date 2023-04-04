@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import { useContext } from "react";
 import { AuthContext } from "../../../contents/AuthProvider";
+import { toast } from "react-hot-toast";
 
 const AppointmentBookingModal = ({ treatment, setTreatment, selectedDate }) => {
   const { user } = useContext(AuthContext);
@@ -25,6 +26,7 @@ const AppointmentBookingModal = ({ treatment, setTreatment, selectedDate }) => {
     };
     console.log(booking);
     setTreatment(null);
+    toast.success(`${name} Booking Successfully`);
   };
 
   return (

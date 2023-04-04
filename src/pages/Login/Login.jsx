@@ -1,12 +1,15 @@
 import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { AuthContext } from "../../contents/AuthProvider";
 import Loading from "../../conponents/Loading";
 
 const Login = () => {
-  const navigate = useNavigate();
   const {userLogin, googleSingin, loading} = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
 
   const hendelLogin = (e) =>{
     e.preventDefault();
@@ -23,9 +26,9 @@ const Login = () => {
          if(user.uid){
               toast.success('Successfully Login Your Account')
          }
-         console.log(user);
+        //  console.log(user);
          form.reset();
-         navigate('/')
+         navigate(from, { replace: true });
          
        })
        .catch((error) => {
