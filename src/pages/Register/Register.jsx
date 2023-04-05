@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { AuthContext } from "../../contents/AuthProvider";
@@ -6,6 +6,8 @@ import Loading from "../../conponents/Loading";
 
 const Register = () => {
     const {userRegister, googleSingin, loading} = useContext(AuthContext);
+
+    const [errorMessage, setErrorMessage] = useState();
   const navigate = useNavigate();
 
   const hendelRegister = (e) => {
@@ -30,7 +32,7 @@ const Register = () => {
       })
       .catch((error) => {
         const errorMessage = error.message;
-        console.log(errorMessage);
+        setErrorMessage(errorMessage);
       });
 
     // userVerify()
@@ -55,7 +57,7 @@ const Register = () => {
       })
       .catch((error) => {
         const errorMessage = error.message;
-        console.log(errorMessage);
+        setErrorMessage(errorMessage);
       });
   };
   // Loading
@@ -68,6 +70,7 @@ const Register = () => {
       <div className="border-4 rounded-xl p-10 m-20">
         <h2 className="text-5xl text-center mb-5">Register Now</h2>
         <form onSubmit={hendelRegister}>
+        <p className="text-red-500">{errorMessage}</p>
           <input
             type="text"
             placeholder="Type Your Name"

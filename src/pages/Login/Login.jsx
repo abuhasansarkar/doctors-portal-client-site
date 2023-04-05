@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { AuthContext } from "../../contents/AuthProvider";
@@ -6,6 +6,7 @@ import Loading from "../../conponents/Loading";
 
 const Login = () => {
   const {userLogin, googleSingin, loading} = useContext(AuthContext);
+  const [errorMessage, setErrorMessage] = useState();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -33,7 +34,7 @@ const Login = () => {
        })
        .catch((error) => {
          const errorMessage = error.message;
-         console.log(errorMessage);
+         setErrorMessage(errorMessage);
          
        });
   }
@@ -48,11 +49,11 @@ const Login = () => {
          if(result.uid){
               toast.success('Successfully Login..');
          }
-         navigate('/')
+         navigate(from, { replace: true });
     })
     .catch((error) => {
          const errorMessage = error.message;
-        console.log(errorMessage);
+         setErrorMessage(errorMessage);
        });
 }
 
@@ -65,6 +66,7 @@ if(loading){
       <div className="border-4 rounded-xl p-10 m-20">
         <h2 className="text-5xl text-center mb-5">LogIn</h2>
         <form onSubmit={hendelLogin}>
+          <p className="text-red-500">{errorMessage}</p>
           <input
             type="text"
             placeholder="Type Your Email"
@@ -78,7 +80,7 @@ if(loading){
             name="password"
           />
           <p>
-            <Link to="/">Forget Your Password</Link>
+            <Link className="text-cyan-400" to="/">Forget Your Password</Link>
           </p>
           <button className="btn w-full mt-3">LogIn Now</button>
         </form>
