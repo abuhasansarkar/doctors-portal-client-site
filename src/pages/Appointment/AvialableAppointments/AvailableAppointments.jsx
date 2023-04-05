@@ -11,7 +11,7 @@ const AvailableAppointments = ({ selectedDate }) => {
   const date = format(selectedDate, "PP");
   
   // TanStack React Query
-  const {data:appointments, isLoading, refetch} = useQuery({
+  const {data:appointments=[], isLoading, refetch} = useQuery({
     queryKey: ['appointmentOptionData'],
     queryFn: () => fetch(`http://localhost:5000/appointmentOptionData?date=${date}`)
     .then(res => res.json())

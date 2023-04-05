@@ -9,7 +9,6 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState();
   const navigate = useNavigate();
   const location = useLocation();
-  
 
   const from = location.state?.from?.pathname || "/";
 
@@ -27,7 +26,7 @@ const Login = () => {
     userLogin(email, password)
     .then((result) => {
          const user = result.user;
-         if(user.uid){
+         if(user?.uid){
               toast.success('Successfully Login Your Account')
          }
         //  console.log(user);

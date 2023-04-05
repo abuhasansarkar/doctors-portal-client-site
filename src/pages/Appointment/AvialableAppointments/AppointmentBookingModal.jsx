@@ -1,9 +1,15 @@
 import { format } from "date-fns";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../../contents/AuthProvider";
 import { toast } from "react-hot-toast";
 
-const AppointmentBookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
+const AppointmentBookingModal = ({
+  treatment,
+  setTreatment,
+  selectedDate,
+  refetch,
+}) => {
+  const [message, setMessage] = useState(null);
   const { user } = useContext(AuthContext);
   const { name, slots } = treatment;
 
@@ -40,8 +46,11 @@ const AppointmentBookingModal = ({ treatment, setTreatment, selectedDate, refetc
           setTreatment(null);
           toast.success(`${name} Booking Successfully`);
           refetch();
+        } else {
+          toast.error(data.message);
         }
 
+        setMessage(data.message);
       });
   };
 
@@ -74,7 +83,7 @@ const AppointmentBookingModal = ({ treatment, setTreatment, selectedDate, refetc
               name="email"
               required
             />
-            
+
             <input
               type="text"
               placeholder="Full Name"
