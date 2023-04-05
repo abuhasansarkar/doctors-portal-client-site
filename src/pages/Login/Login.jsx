@@ -9,8 +9,11 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState();
   const navigate = useNavigate();
   const location = useLocation();
+  
 
   const from = location.state?.from?.pathname || "/";
+
+  console.log(from);
 
   const hendelLogin = (e) =>{
     e.preventDefault();

@@ -5,9 +5,10 @@ import { AuthContext } from "../../contents/AuthProvider";
 import Loading from "../../conponents/Loading";
 
 const Register = () => {
-    const {userRegister, googleSingin, loading} = useContext(AuthContext);
+  const { userRegister, googleSingin, updateUser, loading } =
+    useContext(AuthContext);
 
-    const [errorMessage, setErrorMessage] = useState();
+  const [errorMessage, setErrorMessage] = useState();
   const navigate = useNavigate();
 
   const hendelRegister = (e) => {
@@ -26,10 +27,27 @@ const Register = () => {
         if (user.uid) {
           toast.success("Your Account Successfully Created");
         }
+        const userInfo = {
+          displayName: name,
+        };
+        updateUser(userInfo)
+          .then(() => {})
+          .catch((err) => console.log(err));
         console.log(user);
         form.reset();
         navigate("/");
       })
+      // .then((result) => {
+      //   const user = result.user;
+      //   console.log(user);
+      //   toast("User Created Successfully.");
+      //   const userInfo = {
+      //     displayName: name,
+      //   };
+      //   updateUser(userInfo)
+      //     .then(() => {})
+      //     .catch((err) => console.log(err));
+      // })
       .catch((error) => {
         const errorMessage = error.message;
         setErrorMessage(errorMessage);
@@ -62,7 +80,7 @@ const Register = () => {
   };
   // Loading
   if (loading) {
-    return <Loading></Loading>
+    return <Loading></Loading>;
   }
 
   return (
@@ -70,7 +88,7 @@ const Register = () => {
       <div className="border-4 rounded-xl p-10 m-20">
         <h2 className="text-5xl text-center mb-5">Register Now</h2>
         <form onSubmit={hendelRegister}>
-        <p className="text-red-500">{errorMessage}</p>
+          <p className="text-red-500">{errorMessage}</p>
           <input
             type="text"
             placeholder="Type Your Name"

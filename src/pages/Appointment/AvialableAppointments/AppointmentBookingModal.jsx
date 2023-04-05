@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../contents/AuthProvider";
 import { toast } from "react-hot-toast";
 
-const AppointmentBookingModal = ({ treatment, setTreatment, selectedDate }) => {
+const AppointmentBookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
   const { user } = useContext(AuthContext);
   const { name, slots } = treatment;
 
@@ -14,19 +14,35 @@ const AppointmentBookingModal = ({ treatment, setTreatment, selectedDate }) => {
     const userEmail = form.email.value;
     const selectedDate = form.date.value;
     const userPhone = form.phone.value;
-    const selectedTime = form.time.value;
+    const selectedTimeSlots = form.time.value;
 
-    const booking = {
-      treatment: name,
+    const bookings = {
+      treatmentName: name,
       userName,
       userEmail,
       selectedDate,
-      selectedTime,
+      selectedTimeSlots,
       userPhone,
     };
-    console.log(booking);
-    setTreatment(null);
-    toast.success(`${name} Booking Successfully`);
+    // console.log(bookings);
+
+    fetch("http://localhost:5000/bookingsData/", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(bookings),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.acknowledged) {
+          setTreatment(null);
+          toast.success(`${name} Booking Successfully`);
+          refetch();
+        }
+
+      });
   };
 
   return (
@@ -58,19 +74,14 @@ const AppointmentBookingModal = ({ treatment, setTreatment, selectedDate }) => {
               name="email"
               required
             />
-            <select name="time" className="select select-success w-full mb-5">
-              {slots.map((slot, i) => (
-                <option key={i} value={slot}>
-                  {slot}
-                </option>
-              ))}
-            </select>
+            
             <input
               type="text"
               placeholder="Full Name"
               className="input input-bordered input-success w-full mb-5"
               name="name"
               required
+              defaultValue={user?.displayName}
             />
 
             <input
@@ -80,6 +91,13 @@ const AppointmentBookingModal = ({ treatment, setTreatment, selectedDate }) => {
               name="phone"
               required
             />
+            <select name="time" className="select select-success w-full mb-5">
+              {slots.map((slot, i) => (
+                <option key={i} value={slot}>
+                  {slot}
+                </option>
+              ))}
+            </select>
 
             <button type="submit" className="btn w-full">
               Submit
