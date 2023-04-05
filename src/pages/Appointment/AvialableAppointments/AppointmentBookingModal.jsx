@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../../contents/AuthProvider";
 import { toast } from "react-hot-toast";
 
@@ -9,7 +9,6 @@ const AppointmentBookingModal = ({
   selectedDate,
   refetch,
 }) => {
-  const [message, setMessage] = useState(null);
   const { user } = useContext(AuthContext);
   const { name, slots } = treatment;
 
@@ -47,10 +46,9 @@ const AppointmentBookingModal = ({
           toast.success(`${name} Booking Successfully`);
           refetch();
         } else {
+          setTreatment(null);
           toast.error(data.message);
         }
-
-        setMessage(data.message);
       });
   };
 
