@@ -12,8 +12,6 @@ const Login = () => {
 
   const from = location.state?.from?.pathname || "/";
 
-  console.log(from);
-
   const hendelLogin = (e) =>{
     e.preventDefault();
     // console.log(e.target.email);

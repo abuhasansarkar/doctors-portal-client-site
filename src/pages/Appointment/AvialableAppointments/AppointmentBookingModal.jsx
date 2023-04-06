@@ -89,6 +89,7 @@ const AppointmentBookingModal = ({
               name="name"
               required
               defaultValue={user?.displayName}
+              disabled
             />
 
             <input

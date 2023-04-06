@@ -18,7 +18,6 @@ const Register = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-
     // console.log(name, email, password);
 
     userRegister(email, password)
@@ -31,35 +30,51 @@ const Register = () => {
           displayName: name,
         };
         updateUser(userInfo)
+          .then(() => {
+            userData(name, email);
+          })
+          .catch((err) => console.log(err));
+        // console.log(user);
+        form.reset();
+        
+      })
+      /* .then((result) => {
+        const user = result.user;
+        console.log(user);
+        toast("User Created Successfully.");
+        const userInfo = {
+          displayName: name,
+        };
+        updateUser(userInfo)
           .then(() => {})
           .catch((err) => console.log(err));
-        console.log(user);
-        form.reset();
-        navigate("/");
-      })
-      // .then((result) => {
-      //   const user = result.user;
-      //   console.log(user);
-      //   toast("User Created Successfully.");
-      //   const userInfo = {
-      //     displayName: name,
-      //   };
-      //   updateUser(userInfo)
-      //     .then(() => {})
-      //     .catch((err) => console.log(err));
-      // })
+      }) */
       .catch((error) => {
         const errorMessage = error.message;
         setErrorMessage(errorMessage);
       });
-
-    // userVerify()
-    //   .then(() => {
-    //     // Email verification sent!
-    //     // ...
-    //   })
-    //   .catch(() => {});
   };
+
+  // Register user information send Database
+
+  const userData = (name, email) => {
+    const user = {
+      email,
+      name
+    }
+    fetch('http://localhost:5000/usersData', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      navigate("/");
+    })
+  }
 
   // Google Singin
 

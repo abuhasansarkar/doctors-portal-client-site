@@ -11,7 +11,7 @@ const Navbar = () => {
   const hendelLogout = () => {
     userLogout()
       .then(() => {
-        toast.success("Successfully Logout");
+        toast.error("Successfully Logout");
       })
       .catch((error) => {
         console.log(error);

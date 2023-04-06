@@ -8,7 +8,7 @@ const Loading = () => {
           <div className="container space-y-10 relative">
             <div className="flex flex-col">
               <div className="flex flex-row space-x-16">
-                <div className="flex">
+                {/* <div className="flex">
                   <div className="relative">
                     <div
                       className="w-12 h-12 rounded-full absolute
@@ -48,7 +48,7 @@ const Loading = () => {
                                  border-4 border-dashed border-green-500 border-t-transparent"
                     ></div>
                   </div>
-                </div>
+                </div> */}
 
                 <div className="flex">
                   <div className="relative">

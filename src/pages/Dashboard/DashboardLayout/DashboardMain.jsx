@@ -7,7 +7,7 @@ const DashboardMain = () => {
      return (
           <>
       <Navbar></Navbar>
-      <div className="drawer drawer-mobile lg:max-w-[1400px] m-auto">
+      <div className="drawer drawer-mobile m-auto">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col p-10">
           <Outlet></Outlet>
