@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   return (
-    <div className="flex justify-between gap-5">
-      <div className="card w-96 bg-primary text-primary-content">
+    <div className="lg:flex justify-between gap-10">
+      <div className="card w-full md:mb-5 bg-primary text-primary-content">
         <div className="card-body">
           <h2 className="card-title">All Appointments</h2>
           
@@ -13,7 +13,7 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <div className="card w-96 bg-info text-primary-content">
+      <div className="card w-full md:mb-5 bg-info text-primary-content">
         <div className="card-body">
           <h2 className="card-title">All Admin</h2>
           
@@ -22,7 +22,7 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <div className="card w-96 bg-accent text-primary-content">
+      <div className="card w-full md:mb-5 bg-accent text-primary-content">
         <div className="card-body">
           <h2 className="card-title">Add New</h2>
           
