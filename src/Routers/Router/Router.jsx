@@ -10,6 +10,9 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import DashboardMain from "../../pages/Dashboard/DashboardLayout/DashboardMain";
 import AllUsers from "../../pages/Dashboard/AllUsers/AllUsers";
 import AdminRoute from "../AdminRoute/AdminRoute";
+import Contactus from "../../pages/Contact/Contactus";
+import About from "../../pages/About/About";
+import Reviews from "../../pages/Reviews/Reviews";
 
 export const router = createBrowserRouter([
   {
@@ -20,18 +23,18 @@ export const router = createBrowserRouter([
         path: "/",
         element: <Home></Home>,
       },
-      // {
-      //      path: '/about',
-      //      element: <About></About>
-      // },
-      // {
-      //      path: '/contactus',
-      //      element: <ContactUs></ContactUs>
-      // },
-      // {
-      //      path: '/reviews',
-      //      element: <Reviews></Reviews>
-      // },
+      {
+           path: '/about',
+           element: <About></About>
+      },
+      {
+           path: '/contactus',
+           element: <Contactus></Contactus>
+      },
+      {
+           path: '/reviews',
+           element: <Reviews></Reviews>
+      },
       {
         path: "/login",
         element: <Login></Login>,
