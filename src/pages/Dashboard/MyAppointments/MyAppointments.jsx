@@ -38,6 +38,7 @@ const MyAppointments = () => {
             <th>TreatmentName</th>
             <th>BookingDate</th>
             <th>BookingTime</th>
+            <th>Payment Now</th>
           </tr>
         </thead>
         <tbody>
@@ -49,6 +50,7 @@ const MyAppointments = () => {
               <td>{booking.treatmentName}</td>
               <td>{booking.selectedDate}</td>
               <td>{booking.selectedTimeSlots}</td>
+              <td><button className="btn btn-sm">Pay</button></td>
             </tr>
           ))}
         </tbody>

@@ -6,7 +6,6 @@ import profile from '../../../assets/icons/user.png'
 
 const Navbar = () => {
   const { user, userLogout } = useContext(AuthContext);
-  console.log(user);
   // console.log(user);
   const hendelLogout = () => {
     userLogout()

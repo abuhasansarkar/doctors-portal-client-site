@@ -15,19 +15,19 @@ const Dashboard = () => {
       </div>
       <div className="card w-full md:mb-5 bg-info text-primary-content">
         <div className="card-body">
-          <h2 className="card-title">All Admin</h2>
+          <h2 className="card-title">All Users</h2>
           
           <div className="card-actions justify-end">
-            <Link to='/dashboard/myappointments' className="btn">See More</Link>
+            <Link to='/dashboard/allusers' className="btn">See More</Link>
           </div>
         </div>
       </div>
       <div className="card w-full md:mb-5 bg-accent text-primary-content">
         <div className="card-body">
-          <h2 className="card-title">Add New</h2>
+          <h2 className="card-title">All Doctors Info</h2>
           
           <div className="card-actions justify-end">
-            <Link to='/dashboard/myappointments' className="btn">See More</Link>
+            <Link to='/dashboard/alldoctors' className="btn">Doctors</Link>
           </div>
         </div>
       </div>

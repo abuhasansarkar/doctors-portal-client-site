@@ -33,7 +33,7 @@ const AllUsers = () => {
 
   //   delete user
   const hendelDeleteUser = (user) => {
-    console.log("clicked",user);
+    // console.log("clicked",user);
     fetch(`http://localhost:5000/allusersData/admin/${user?._id}`, {
       method: "DELETE",
     })

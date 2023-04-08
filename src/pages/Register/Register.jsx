@@ -6,15 +6,15 @@ import Loading from "../../conponents/Loading";
 import useJwtToken from "../../Hooks/UseTokenHooks/useJwtToken";
 
 const Register = () => {
-  const { userRegister, googleSingin, updateUser, loading } =
+  const { userRegister, googleSingin, updateUser, loading, userVerify } =
     useContext(AuthContext);
   const [errorMessage, setErrorMessage] = useState();
-  const [createdUserEmail, setCreatedUserEmail] = useState('');
+  const [createdUserEmail, setCreatedUserEmail] = useState("");
   const [jwtToken] = useJwtToken(createdUserEmail);
   const navigate = useNavigate();
 
-  if(jwtToken){
-    navigate('/');
+  if (jwtToken) {
+    navigate("/");
   }
 
   const hendelRegister = (e) => {
@@ -42,7 +42,9 @@ const Register = () => {
           .catch((err) => console.log(err));
         // console.log(user);
         form.reset();
-        
+        userVerify().then(() => {
+          toast.error("Please Check your Email Address and Verify");
+        });
       })
       /* .then((result) => {
         const user = result.user;
@@ -66,34 +68,34 @@ const Register = () => {
   const userData = (name, email) => {
     const user = {
       email,
-      name
-    }
-    fetch('http://localhost:5000/usersData', {
-      method: 'POST',
+      name,
+    };
+    fetch("http://localhost:5000/usersData", {
+      method: "POST",
       headers: {
-        'content-type': 'application/json'
+        "content-type": "application/json",
       },
-      body: JSON.stringify(user)
+      body: JSON.stringify(user),
     })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data);
-      // getJWTtoken(email);
-      setCreatedUserEmail(email);
-    })
-  }
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        // getJWTtoken(email);
+        setCreatedUserEmail(email);
+      });
+  };
 
   // JWT token call
   // const getJWTtoken = (email) => {
-    // fetch(`http://localhost:5000/jwt?email=${email}`)
-    // .then(res => res.json())
-    // .then(data => {
-    //   console.log(data);
-    //   if(data.accesstoken){
-    //     navigate("/");
-    //     localStorage.setItem('jwtAccessToken', data.accesstoken)
-    //   }
-    // })
+  // fetch(`http://localhost:5000/jwt?email=${email}`)
+  // .then(res => res.json())
+  // .then(data => {
+  //   console.log(data);
+  //   if(data.accesstoken){
+  //     navigate("/");
+  //     localStorage.setItem('jwtAccessToken', data.accesstoken)
+  //   }
+  // })
 
   // }
 
@@ -102,8 +104,8 @@ const Register = () => {
   const hendelGoogleSingin = () => {
     googleSingin()
       .then((result) => {
-        const user = result.user;
-        console.log(user);
+        // const user = result.user;
+        // console.log(user);
         if (result.uid) {
           toast.success("Successfully Login..");
         }
@@ -148,7 +150,8 @@ const Register = () => {
         </form>
 
         <h5 className="mt-3">
-          New to Doctor Portal <Link to="/login" className="text-cyan-500 font-bold">
+          New to Doctor Portal{" "}
+          <Link to="/login" className="text-cyan-500 font-bold">
             Login Your Account
           </Link>
         </h5>

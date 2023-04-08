@@ -5,6 +5,7 @@ import {
   getAuth,
   onAuthStateChanged,
   sendEmailVerification,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -34,8 +35,14 @@ const AuthProvider = ({ children }) => {
   //   User Verification
   const userVerify = () => {
     setLoading(true);
-    return sendEmailVerification(auth.currentUser);
+    return sendEmailVerification(auth.currentUser)
+   
   };
+
+  // User Password Reset and send Email
+  const resetPassword = (email) => {
+    return sendPasswordResetEmail(auth, email);
+  }
 
   // Login user Account
   const userLogin = (email, password) => {
@@ -69,6 +76,7 @@ const AuthProvider = ({ children }) => {
     googleSingin,
     userRegister,
     userVerify,
+    resetPassword,
     userLogin,
     updateUser,
     userLogout,

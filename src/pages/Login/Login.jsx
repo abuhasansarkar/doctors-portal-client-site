@@ -43,6 +43,18 @@ const Login = () => {
        });
   }
 
+  // Send password reset email 
+  const hendelResetPassword = (email) => {
+    console.log('Clicked');
+    // resetPassword(email)
+    // .then(() => {
+    //   console.log("Send reset password email");
+    // })
+    // .catch((error) => {
+    //   console.log(error);
+    // });
+  }
+
   // Google Singin
 
   const hendelGoogleSingin = () => {
@@ -84,7 +96,7 @@ if(loading){
             name="password"
           />
           <p>
-            <Link className="text-cyan-400" to="/">Forget Your Password</Link>
+            <Link onClick={hendelResetPassword} className="text-cyan-400" to="/">Forget Your Password</Link>
           </p>
           <button className="btn w-full mt-3">LogIn Now</button>
         </form>

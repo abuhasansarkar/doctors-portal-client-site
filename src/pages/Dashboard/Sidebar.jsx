@@ -14,16 +14,20 @@ const Sidebar = () => {
         <li>
           <Link to="/dashboard">Dashboard</Link>
         </li>
-        <li>
-          <Link to="/dashboard/myappointments">My Appointments</Link>
-        </li>
+       
         {isAdmin && (
           <li>
             <Link to="/dashboard/allusers">All Users</Link>
           </li>
         )}
         <li>
-          <Link>Add New </Link>
+          <Link to='/dashboard/alldoctors'>All Doctors </Link>
+        </li>
+        <li>
+          <Link to='/dashboard/adddoctor'>Add a Doctor </Link>
+        </li>
+        <li>
+          <Link to="/dashboard/myappointments">My Appointments</Link>
         </li>
       </ul>
     </>
