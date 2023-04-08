@@ -10,7 +10,7 @@ const AppointmentBookingModal = ({
   refetch,
 }) => {
   const { user } = useContext(AuthContext);
-  const { name, slots } = treatment;
+  const { name, slots, price } = treatment;
 
   const hendelBooking = (e) => {
     e.preventDefault();
@@ -28,6 +28,7 @@ const AppointmentBookingModal = ({
       selectedDate,
       selectedTimeSlots,
       userPhone,
+      price,
     };
     // console.log(bookings);
 
@@ -40,11 +41,11 @@ const AppointmentBookingModal = ({
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.acknowledged) {
+          refetch();
           setTreatment(null);
           toast.success(`${name} Booking Successfully`);
-          refetch();
         } else {
           setTreatment(null);
           toast.error(data.message);

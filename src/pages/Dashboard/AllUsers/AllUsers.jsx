@@ -14,7 +14,7 @@ const AllUsers = () => {
   });
   //   add user
   const hendelMakeAdmin = (user) => {
-    console.log(user);
+    // console.log(user);
     fetch(`http://localhost:5000/allusersData/admin/${user?._id}`, {
       method: "PUT",
       headers: {

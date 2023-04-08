@@ -2,8 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const AddDoctor = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -26,7 +28,7 @@ const AddDoctor = () => {
      //   console.log(data);
        const formData = new FormData();
        formData.append('image', image);
-       const imgUrl = `https://api.imgbb.com/1/upload?expiration=600&key=${imgHostingKey}`
+       const imgUrl = `https://api.imgbb.com/1/upload?key=${imgHostingKey}`
        fetch(imgUrl, {
           method: 'POST',
           body: formData
@@ -51,9 +53,10 @@ const AddDoctor = () => {
                })
                .then(res => res.json())
                .then((result) => {
-                    console.log(result);
+                    // console.log(result);
                     if(result.acknowledged){
                          toast.success('Docotor Added Successfully.')
+                         navigate('/dashboard/alldoctors');
                     }
                })
           }
@@ -98,6 +101,7 @@ const AddDoctor = () => {
           className="input input-bordered input-accent w-full mb-5"
           {...register("specialty", { required: "Specialty is Requried !" })}
         >
+
           {appointmentSpecialty.map((specialty) => (
             <option key={specialty._id} value={specialty.name}>
               {specialty.name}

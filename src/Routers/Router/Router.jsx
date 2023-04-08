@@ -15,11 +15,14 @@ import About from "../../pages/About/About";
 import Reviews from "../../pages/Reviews/Reviews";
 import AddDoctor from "../../pages/Dashboard/AddDoctor/AddDoctor";
 import AllDoctors from "../../pages/Dashboard/AllDoctors/AllDoctors";
+import Payment from "../../pages/Dashboard/Payment/Payment";
+import ErrorPage from "../../pages/Shared/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -54,6 +57,7 @@ export const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <PrivateRoute><DashboardMain></DashboardMain></PrivateRoute>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: '/dashboard',
@@ -74,6 +78,11 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/alldoctors",
         element: <AdminRoute><AllDoctors></AllDoctors></AdminRoute>
+      },
+      {
+        path: "/dashboard/payment/:id",
+        element: <Payment></Payment>,
+        loader: ({params}) => fetch(`http://localhost:5000/bookingsData/${params.id}`)
       },
     ],
   },

@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
 import { toast } from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../../../contents/AuthProvider";
 import profile from '../../../assets/icons/user.png'
 
 const Navbar = () => {
   const { user, userLogout } = useContext(AuthContext);
+  const {pathname} = useLocation();
   // console.log(user);
   const hendelLogout = () => {
     userLogout()
@@ -36,7 +37,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className=" border-b-2 border-[#0FCFEC] py-3 sticky top-0 bg-white z-10">
+    <div className=" border-b-2 border-[#0FCFEC] py-3 sticky top-0  bg-white z-20">
       <div className="navbar max-w-[1440px] m-auto">
         <div className="navbar-start">
           <div className="dropdown">
@@ -105,7 +106,8 @@ const Navbar = () => {
             </button>
           )}
         </div>
-        <label htmlFor="my-drawer-2" tabIndex={0} className="btn btn-info ml-3 lg:hidden">
+        
+        <label htmlFor="sidebar" tabIndex={0} className={ pathname === '/dashboard' ? 'btn btn-outline ml-3 lg:hidden': 'hidden'}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"

@@ -9,23 +9,26 @@ const Sidebar = () => {
 
   return (
     <>
-      <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-      <ul className="menu py-4 w-52 text-base-content bg-white font-bold">
+      <label htmlFor="sidebar" className="drawer-overlay"></label>
+      <ul className="menu py-4 w-52 bg-white lg:bg-transparent font-bold">
         <li>
           <Link to="/dashboard">Dashboard</Link>
         </li>
-       
+
         {isAdmin && (
-          <li>
-            <Link to="/dashboard/allusers">All Users</Link>
-          </li>
+          <>
+            <li>
+              <Link to="/dashboard/allusers">All Users</Link>
+            </li>
+
+            <li>
+              <Link to="/dashboard/alldoctors">All Doctors </Link>
+            </li>
+            <li>
+              <Link to="/dashboard/adddoctor">Add a Doctor </Link>
+            </li>
+          </>
         )}
-        <li>
-          <Link to='/dashboard/alldoctors'>All Doctors </Link>
-        </li>
-        <li>
-          <Link to='/dashboard/adddoctor'>Add a Doctor </Link>
-        </li>
         <li>
           <Link to="/dashboard/myappointments">My Appointments</Link>
         </li>
